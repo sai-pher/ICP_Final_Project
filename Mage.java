@@ -57,6 +57,7 @@ public class Mage extends Character {
 
     }
 
+    final String MAGE_CLASS            = "MAGE";
     final int    MAGE_BASE_LIFE_POINTS = 100;
     final int    MAGE_BASE_ENERGY      = 140;
     final int    MAGE_CHARGE           = 20;
@@ -74,6 +75,7 @@ public class Mage extends Character {
      */
     public Mage(String name, Gender gen, Species spec) {
         super(name, gen, spec);
+        charClass = MAGE_CLASS;
         lifePoints = MAGE_BASE_LIFE_POINTS;
         energy = MAGE_BASE_ENERGY;
         dodge = DodgeMultiplier.ONE;

@@ -51,10 +51,12 @@ public abstract class Character implements Battle_Mechanics {
     int          energy;
     int          level;
     int          exp;
+    String       charClass;
     String       name;
     BattleStatus status = BattleStatus.ALIVE;
     final Gender  gender;
     final Species species;
+
     final int     BASE_LIFE_POINTS = 100;
     final int     BASE_ENERGY      = 100;
     final int     EXP_THRESHOLD    = 100;

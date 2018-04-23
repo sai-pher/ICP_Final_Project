@@ -55,6 +55,7 @@ public class Ninja extends Character {
 
     }
 
+    final String NINJA_CLASS            = "NINJA";
     final int    NINJA_BASE_LIFE_POINTS = 80;
     final int    NINJA_BASE_ENERGY      = 145;
     final int    NINJA_CHARGE           = 15;
@@ -72,6 +73,7 @@ public class Ninja extends Character {
      */
     public Ninja(String name, Gender gen, Species spec) {
         super(name, gen, spec);
+        charClass = NINJA_CLASS;
         lifePoints = NINJA_BASE_LIFE_POINTS;
         energy = NINJA_BASE_ENERGY;
         dodge = DodgeMultiplier.ONE;

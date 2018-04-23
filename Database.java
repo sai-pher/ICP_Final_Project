@@ -67,13 +67,27 @@ public class Database {
         }
     }
 
+    public void addCharacter(String name, Character.Gender gender, Character.Species species, String charClass) {
+        try {
+            pstmt = conn.prepareStatement("insert into `character` values (?,?,?,?)");
+            pstmt.setString(1, name);
+            pstmt.setString(2, String.valueOf(gender));
+            pstmt.setString(3, String.valueOf(species));
+            pstmt.setString(4, charClass);
+            pstmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method retrieves a {@code User} object from the database.
      *
      * @param email    The email of the user.
      * @param password The password of the user.
      */
-    public void getUser(String email, String password) {
+    public User getUser(String email, String password) {
+        User o = null;
         try {
             pstmt = conn.prepareStatement("select * from users where email = (?) and password = (?)");
             pstmt.setString(1, email);
@@ -88,7 +102,7 @@ public class Database {
                 String characterName = rset.getString(5);
 
                 //create & add object to model
-                User o = new User(name, userName, email, password);
+                o = new User(name, userName, email, password);
 
                 pstmt = conn.prepareStatement("select * from `character` where Name = (?)");
                 pstmt.setString(1, characterName);
@@ -102,8 +116,6 @@ public class Database {
                     int    charLevel   = rset.getInt(5);
                     int    charExp     = rset.getInt(6);
 
-                    Character character = null;
-
                     switch (charClass) {
 
                         case "MAGE":
@@ -113,7 +125,7 @@ public class Database {
                             m.setExp(charExp);
                             m.setLevel(charLevel);
 
-                            character = m;
+                            o.setCharacter(m);
                             break;
 
                         case "WARRIOR":
@@ -123,7 +135,7 @@ public class Database {
                             w.setExp(charExp);
                             w.setLevel(charLevel);
 
-                            character = w;
+                            o.setCharacter(w);
                             break;
 
                         case "NINJA":
@@ -133,12 +145,10 @@ public class Database {
                             n.setExp(charExp);
                             n.setLevel(charLevel);
 
-                            character = n;
+                            o.setCharacter(n);
                             break;
                     }
 
-
-                    o.setCharacter(character);
                 }
 
             }
@@ -146,6 +156,8 @@ public class Database {
         catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return o;
     }
 
     /**

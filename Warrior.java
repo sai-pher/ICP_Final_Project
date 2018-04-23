@@ -54,6 +54,7 @@ public class Warrior extends Character {
 
     }
 
+    final String WARRIOR_CLASS            = "WARRIOR";
     final int    WARRIOR_BASE_LIFE_POINTS = 200;
     final int    WARRIOR_BASE_ENERGY      = 100;
     final int    WARRIOR_CHARGE           = 10;
@@ -71,6 +72,7 @@ public class Warrior extends Character {
      */
     public Warrior(String name, Gender gen, Species spec) {
         super(name, gen, spec);
+        charClass = WARRIOR_CLASS;
         lifePoints = WARRIOR_BASE_LIFE_POINTS;
         energy = WARRIOR_BASE_ENERGY;
         dodge = DodgeMultiplier.ONE;

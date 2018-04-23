@@ -83,12 +83,64 @@ public class Database {
 
             while (rset.next()) {
                 //Get details
-                String name      = rset.getString(1);
-                String userName  = rset.getString(2);
-                String Character = rset.getString(5);
+                String name          = rset.getString(1);
+                String userName      = rset.getString(2);
+                String characterName = rset.getString(5);
 
                 //create & add object to model
                 User o = new User(name, userName, email, password);
+
+                pstmt = conn.prepareStatement("select * from `character` where Name = (?)");
+                pstmt.setString(1, characterName);
+                pstmt.executeUpdate();
+                rset = pstmt.executeQuery();
+
+                while (rset.next()) {
+                    String charSpecies = rset.getString(2);
+                    String charGender  = rset.getString(3);
+                    String charClass   = rset.getString(4);
+                    int    charLevel   = rset.getInt(5);
+                    int    charExp     = rset.getInt(6);
+
+                    Character character = null;
+
+                    switch (charClass) {
+
+                        case "MAGE":
+                            Mage m = new Mage(characterName,
+                                              Character.Gender.valueOf(charGender),
+                                              Character.Species.valueOf(charSpecies));
+                            m.setExp(charExp);
+                            m.setLevel(charLevel);
+
+                            character = m;
+                            break;
+
+                        case "WARRIOR":
+                            Warrior w = new Warrior(characterName,
+                                                    Character.Gender.valueOf(charGender),
+                                                    Character.Species.valueOf(charSpecies));
+                            w.setExp(charExp);
+                            w.setLevel(charLevel);
+
+                            character = w;
+                            break;
+
+                        case "NINJA":
+                            Ninja n = new Ninja(characterName,
+                                                Character.Gender.valueOf(charGender),
+                                                Character.Species.valueOf(charSpecies));
+                            n.setExp(charExp);
+                            n.setLevel(charLevel);
+
+                            character = n;
+                            break;
+                    }
+
+
+                    o.setCharacter(character);
+                }
+
             }
         }
         catch (SQLException e) {

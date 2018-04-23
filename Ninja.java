@@ -181,7 +181,8 @@ public class Ninja extends Character {
     @Override
     //todo: make level dependant
     public void heal() {
-        if ((lifePoints += NINJA_HEAL) <= NINJA_BASE_LIFE_POINTS & (energy -= 10) > 0)
+        if ((lifePoints += NINJA_HEAL) <= NINJA_BASE_LIFE_POINTS & (energy -= 25) > 0)
             lifePoints += NINJA_HEAL;
+        energy -= 25;
     }
 }

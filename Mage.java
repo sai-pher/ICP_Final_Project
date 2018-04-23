@@ -60,8 +60,8 @@ public class Mage extends Character {
     final String MAGE_CLASS            = "MAGE";
     final int    MAGE_BASE_LIFE_POINTS = 100;
     final int    MAGE_BASE_ENERGY      = 140;
-    final int    MAGE_CHARGE           = 20;
-    final int    MAGE_HEAL             = 15;
+    final int    MAGE_CHARGE           = 30;
+    final int    MAGE_HEAL             = 20;
     final double MAGE_DODGE_CHANCE     = 0.4;
 
     private DodgeMultiplier dodge;
@@ -187,6 +187,7 @@ public class Mage extends Character {
     //todo: make level dependant
     public void heal() {
         if ((lifePoints += MAGE_HEAL) <= MAGE_BASE_LIFE_POINTS & (energy -= 10) > 0)
+            energy -= 10;
             lifePoints += MAGE_HEAL;
     }
 }

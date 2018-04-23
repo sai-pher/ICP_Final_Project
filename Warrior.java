@@ -181,7 +181,7 @@ public class Warrior extends Character {
     @Override
     //todo: make level dependant
     public void heal() {
-        if ((lifePoints += WARRIOR_HEAL) <= WARRIOR_BASE_LIFE_POINTS & (energy -= 10) > 0)
+        if ((lifePoints += WARRIOR_HEAL) <= WARRIOR_BASE_LIFE_POINTS)
             lifePoints += WARRIOR_HEAL;
     }
 }

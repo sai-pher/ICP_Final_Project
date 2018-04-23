@@ -10,15 +10,17 @@ import java.util.Objects;
 
 class User {
 
-    String    name;
+    String    fName;
+    String    lName;
     String    userName;
     String    email;
     String    password;
     Character character;
 
     //Constructor
-    public User(String name, String userName, String email, String password) {
-        this.name = name;
+    public User(String fName, String lName, String userName, String email, String password) {
+        this.fName = fName;
+        this.lName = lName;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -26,12 +28,21 @@ class User {
 
     //Getters and Setters
 
-    public String getName() {
-        return name;
+
+    public String getfName() {
+        return fName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
     public String getUserName() {
@@ -68,30 +79,30 @@ class User {
 
     //Helper methods
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) &&
-               Objects.equals(userName, user.userName) &&
+        return Objects.equals(userName, user.userName) &&
                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, userName, email);
+        return Objects.hash(userName, email);
     }
 
     @Override
     public String toString() {
         return "User{" +
-               "name='" + name + '\'' +
+               "fName='" + fName + '\'' +
+               ", lName='" + lName + '\'' +
                ", userName='" + userName + '\'' +
                ", email='" + email + '\'' +
                ", password='" + password + '\'' +
+               ", character=" + character +
                '}';
     }
 }

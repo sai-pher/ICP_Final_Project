@@ -48,18 +48,21 @@ public class Database {
     /**
      * This method adds a new {@code User} object to the database.
      *
-     * @param name     The name of the user.
+     * @param fName    The first name of the user.
+     * @param lName    The last name of the user.
      * @param userName The userName of the user.
      * @param email    The email of the user.
      * @param password The password of the user.
      */
-    public void addUser(String name, String userName, String email, String password) {
+    public void addUser(String fName, String lName, String userName, String email, String password, String charName) {
         try {
-            pstmt = conn.prepareStatement("insert into users values (?,?,?,?)");
-            pstmt.setString(1, name);
-            pstmt.setString(2, userName);
-            pstmt.setString(3, email);
-            pstmt.setString(4, password);
+            pstmt = conn.prepareStatement("insert into users values (?,?,?,?,?,?)");
+            pstmt.setString(1, fName);
+            pstmt.setString(2, lName);
+            pstmt.setString(3, userName);
+            pstmt.setString(4, email);
+            pstmt.setString(5, password);
+            pstmt.setString(6, charName);
             pstmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -97,12 +100,13 @@ public class Database {
 
             while (rset.next()) {
                 //Get details
-                String name          = rset.getString(1);
-                String userName      = rset.getString(2);
+                String fName         = rset.getString(1);
+                String lName         = rset.getString(2);
+                String userName      = rset.getString(3);
                 String characterName = rset.getString(5);
 
                 //create & add object to model
-                o = new User(name, userName, email, password);
+                o = new User(fName, lName, userName, email, password);
 
                 pstmt = conn.prepareStatement("select * from `character` where Name = (?)");
                 pstmt.setString(1, characterName);

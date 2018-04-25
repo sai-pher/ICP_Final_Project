@@ -9,17 +9,26 @@ import javax.swing.*;
 
 public class User_SignUp {
     JFrame frame;
-    private JLabel signUpLabel;
-    private JPanel signUpRootPanel;
-    private JPanel controlPanel;
-    private JPanel labelPanel;
-    private JPanel textPanel;
-    JTextField     nameTextField;
+    private JLabel  signUpLabel;
+    private JPanel  signUpRootPanel;
+    private JPanel  controlPanel;
+    private JPanel  labelPanel;
+    private JPanel  textPanel;
+    public  JButton signUpButton;
+    public  JButton createCharacterButton;
     JTextField     userNameTextField;
     JTextField     emailTextField;
     JPasswordField passwordField;
     JPasswordField rePasswordField;
-    public JButton signUpButton;
+    public Mage    mage;
+    public Warrior warrior;
+    public Ninja   ninja;
+    JTextField fNameTextField;
+    JTextField lNameTextField;
+    String     charName;
+    String     charSpecies;
+    String     charGender;
+    String     charClass;
 
     public User_SignUp() {
 

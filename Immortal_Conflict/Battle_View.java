@@ -10,9 +10,9 @@ import javax.swing.*;
 public class Battle_View {
     JFrame frame;
     private JPanel viewPanel;
-    JTextField nameTextField;
     JTextField userNameTextField;
-    JTextField emailTextField;
+    JTextField charNameTextField;
+    JTextField charClassTextField;
     JButton    exitButton;
 
     public Battle_View() {

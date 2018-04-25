@@ -5,6 +5,8 @@
  */
 package Immortal_Conflict;
 
+import java.sql.SQLException;
+
 public class Model_BattleGround {
 
     User      player_1;
@@ -69,6 +71,7 @@ public class Model_BattleGround {
     User signUp(String fName, String lName, String userName, String email, String password, Character character) {
         User u = new User(fName, lName, userName, email, password);
         u.setCharacter(character);
+        database.addCharacter(character.name, character.gender, character.species, character.charClass);
         database.addUser(fName, lName, userName, email, password, character.getName());
         return u;
     }
@@ -104,6 +107,18 @@ public class Model_BattleGround {
                                  Character.Species.valueOf(species));
         }
         return null;
+    }
+
+    boolean find(String email) {
+        try {
+            if (database.getQuery(email))
+                return true;
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**

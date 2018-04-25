@@ -13,6 +13,15 @@ import java.util.Objects;
 public abstract class Character implements Battle_Mechanics {
 
     /**
+     * Specifies the character type of the given character.
+     */
+    enum CharacterClass {
+        MAGE,
+        WARRIOR,
+        NINJA
+    }
+
+    /**
      * Specifies the species of the given character.
      */
     enum Species {

@@ -72,7 +72,7 @@ public class Database {
 
     public void addCharacter(String name, Character.Gender gender, Character.Species species, String charClass) {
         try {
-            pstmt = conn.prepareStatement("insert into `character` values (?,?,?,?)");
+            pstmt = conn.prepareStatement("insert into character_table values (?,?,?,?)");
             pstmt.setString(1, name);
             pstmt.setString(2, String.valueOf(gender));
             pstmt.setString(3, String.valueOf(species));
@@ -108,7 +108,7 @@ public class Database {
                 //create & add object to model
                 o = new User(fName, lName, userName, email, password);
 
-                pstmt = conn.prepareStatement("select * from `character` where Name = (?)");
+                pstmt = conn.prepareStatement("select * from character_table where Name = (?)");
                 pstmt.setString(1, characterName);
                 pstmt.executeUpdate();
                 rset = pstmt.executeQuery();
@@ -123,9 +123,9 @@ public class Database {
                     switch (charClass) {
 
                         case "MAGE":
-                            Mage m = new Mage(characterName,
-                                              Character.Gender.valueOf(charGender),
-                                              Character.Species.valueOf(charSpecies));
+                            Immortal_Conflict.Mage m = new Mage(characterName,
+                                                                Character.Gender.valueOf(charGender),
+                                                                Character.Species.valueOf(charSpecies));
                             m.setExp(charExp);
                             m.setLevel(charLevel);
 
@@ -170,15 +170,20 @@ public class Database {
      * @param query The mySQL query to be executed.
      * @return The result of the mySQL query as a {@code ResultSet} object.
      */
-    public ResultSet getQuery(String query) {
+    public boolean getQuery(String query) {
         try {
-            pstmt = conn.prepareStatement(query);
+            pstmt = conn.prepareStatement("select email from users");
             rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+                if (rset.equals(query))
+                    return true;
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return rset;
+        return false;
     }
 
     /**
